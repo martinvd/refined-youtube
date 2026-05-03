@@ -9,13 +9,15 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-tags: true
       - uses: oven-sh/setup-bun@v2
       - name: Install dependencies
         run: bun install --frozen-lockfile
       - name: Build
         run: bun run build
-      - name: Zip dist
-        run: zip -r "refined-youtube-${{ github.event.release.tag_name }}.zip" dist
+      - name: Package release
+        run: bun run release "${{ github.event.release.tag_name }}"
       - name: Upload release asset
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
