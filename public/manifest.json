@@ -3,6 +3,11 @@
   "name": "Refined YouTube",
   "version": "0.0.0",
   "description": "A refined YouTube experience.",
+  "permissions": ["storage"],
+  "action": {
+    "default_popup": "options.html",
+    "default_title": "Refined YouTube"
+  },
   "host_permissions": ["*://*.youtube.com/*"],
   "background": {
     "service_worker": "background.js"
