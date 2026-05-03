@@ -2,6 +2,8 @@
   "name": "refined-youtube",
   "private": true,
   "version": "0.0.0",
+  "description": "Browser extension that refines the YouTube experience",
+  "license": "MIT",
   "type": "module",
   "scripts": {
     "dev": "bun run --watch scripts/build.ts",
