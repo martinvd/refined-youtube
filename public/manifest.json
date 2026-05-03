@@ -3,7 +3,16 @@
   "name": "Refined YouTube",
   "version": "0.0.0",
   "description": "A refined YouTube experience.",
+  "host_permissions": ["*://*.youtube.com/*"],
   "background": {
     "service_worker": "background.js"
-  }
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.youtube.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_start",
+      "all_frames": false
+    }
+  ]
 }
