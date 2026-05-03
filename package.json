@@ -1,7 +1,7 @@
 {
   "name": "refined-youtube",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Browser extension that refines the YouTube experience",
   "license": "MIT",
   "type": "module",
