@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "es2023",
     "module": "esnext",
-    "lib": ["ES2023", "WebWorker"],
+    "lib": ["ES2023", "DOM", "WebWorker"],
     "types": ["chrome", "bun"],
     "skipLibCheck": true,
 
