@@ -6,6 +6,8 @@ Features:
 
 - [x] Option to hide YouTube Shorts
 
+Tested on Chrome.
+
 ## Install
 
 Download [latest release](https://github.com/martinvd/refined-youtube/releases/latest), or build from source.
