@@ -11,15 +11,6 @@ if (!tagName) {
   process.exit(1);
 }
 
-const tagCheck = Bun.spawn(['git', 'show-ref', '--tags', '--verify', '--quiet', `refs/tags/${tagName}`], {
-  cwd: rootDir,
-});
-
-if ((await tagCheck.exited) !== 0) {
-  console.error(`Git tag "${tagName}" does not exist.`);
-  process.exit(1);
-}
-
 try {
   await readdir(distDir);
 } catch {
