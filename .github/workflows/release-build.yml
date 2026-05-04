@@ -1,24 +1,38 @@
 name: Release build
+
 on:
   release:
     types: [published]
+
 jobs:
   build:
     runs-on: ubuntu-latest
+
     permissions:
       contents: write
+
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout release tag
+        uses: actions/checkout@v4
         with:
-          ref: ${{ github.sha }}
-      - uses: oven-sh/setup-bun@v2
+          ref: ${{ github.event.release.tag_name }}
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+
       - name: Install dependencies
         run: bun install --frozen-lockfile
+
       - name: Build
         run: bun run build
+
       - name: Package release
         run: bun run release "${{ github.event.release.tag_name }}"
+
       - name: Upload release asset
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh release upload "${{ github.event.release.tag_name }}" "refined-youtube-${{ github.event.release.tag_name }}.zip" --clobber
+        run: |
+          gh release upload "${{ github.event.release.tag_name }}" \
+            "refined-youtube-${{ github.event.release.tag_name }}.zip" \
+            --clobber
