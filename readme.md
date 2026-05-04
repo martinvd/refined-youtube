@@ -2,6 +2,10 @@
 
 > Browser extension that refines the YouTube experience
 
+Features:
+
+- [x] Option to hide YouTube Shorts
+
 ## Install
 
 Download [latest release](https://github.com/martinvd/refined-youtube/releases/latest), or build from source.
