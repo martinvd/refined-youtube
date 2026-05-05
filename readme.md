@@ -5,6 +5,7 @@
 Features:
 
 - [x] Option to hide YouTube Shorts
+- [x] Option to collapse hidden elements
 
 Tested on Chrome.
 

@@ -12,12 +12,24 @@
           14px/1.4 system-ui,
           sans-serif;
       }
+
+      label {
+        display: block;
+      }
+
+      label + label {
+        margin-top: 8px;
+      }
     </style>
   </head>
   <body>
     <label>
       <input type="checkbox" id="hide-shorts" />
       Hide shorts
+    </label>
+    <label>
+      <input type="checkbox" id="collapse-hidden-elements" />
+      Collapse hidden elements
     </label>
     <script src="options.js" defer></script>
   </body>
