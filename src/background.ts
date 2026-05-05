@@ -1,3 +1,3 @@
 chrome.runtime.onInstalled.addListener((details) => {
-  console.debug('refined-youtube', details.reason);
+  console.debug("refined-youtube", details.reason);
 });

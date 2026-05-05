@@ -1,20 +1,20 @@
-import { readdir, rm } from 'node:fs/promises';
-import { dirname, resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { readdir, rm } from "node:fs/promises";
+import { dirname, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 
-const rootDir = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-const distDir = resolve(rootDir, 'dist');
+const rootDir = resolve(dirname(fileURLToPath(import.meta.url)), "..");
+const distDir = resolve(rootDir, "dist");
 const tagName = process.argv[2];
 
 if (!tagName) {
-  console.error('Usage: bun run release <tag-name>');
+  console.error("Usage: bun run release <tag-name>");
   process.exit(1);
 }
 
 try {
   await readdir(distDir);
 } catch {
-  console.error('dist directory not found. Run `bun run build` first.');
+  console.error("dist directory not found. Run `bun run build` first.");
   process.exit(1);
 }
 
@@ -23,10 +23,10 @@ const archivePath = resolve(rootDir, archiveName);
 
 await rm(archivePath, { force: true });
 
-const zip = Bun.spawn(['zip', '-r', archivePath, '.'], {
+const zip = Bun.spawn(["zip", "-r", archivePath, "."], {
   cwd: distDir,
-  stdout: 'inherit',
-  stderr: 'inherit',
+  stdout: "inherit",
+  stderr: "inherit",
 });
 
 const exitCode = await zip.exited;

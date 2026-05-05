@@ -1,8 +1,7 @@
 export const DEFAULT_COLLAPSE_HIDDEN_ELEMENTS = true;
 
-const RICH_SECTION_SELECTOR = 'ytd-rich-section-renderer';
-const HIDDEN_EMPTY_RICH_SECTION_CLASS =
-  'refined-youtube-hidden-empty-section';
+const RICH_SECTION_SELECTOR = "ytd-rich-section-renderer";
+const HIDDEN_EMPTY_RICH_SECTION_CLASS = "refined-youtube-hidden-empty-section";
 
 export function createCollapseHiddenElementsFeature(): {
   enqueue(root: ParentNode): void;
@@ -12,7 +11,7 @@ export function createCollapseHiddenElementsFeature(): {
   const pendingEmptyRichSectionRoots = new Set<ParentNode>();
   let emptyRichSectionFlushScheduled = false;
 
-  const emptyRichSectionStyle = document.createElement('style');
+  const emptyRichSectionStyle = document.createElement("style");
   emptyRichSectionStyle.textContent = `
     ${RICH_SECTION_SELECTOR}.${HIDDEN_EMPTY_RICH_SECTION_CLASS} {
       display: none !important;
@@ -31,17 +30,14 @@ export function createCollapseHiddenElementsFeature(): {
 
     element.classList.remove(HIDDEN_EMPTY_RICH_SECTION_CLASS);
 
-    const content = element.querySelector(':scope > #content');
+    const content = element.querySelector(":scope > #content");
     if (!(content instanceof Element)) {
       return;
     }
 
     const contentBox = content.getBoundingClientRect();
     const hasRenderedContent = contentBox.width > 0 && contentBox.height > 0;
-    element.classList.toggle(
-      HIDDEN_EMPTY_RICH_SECTION_CLASS,
-      !hasRenderedContent,
-    );
+    element.classList.toggle(HIDDEN_EMPTY_RICH_SECTION_CLASS, !hasRenderedContent);
   }
 
   /** Marks empty `ytd-rich-section-renderer` hosts under `root` (cheap layout read). */

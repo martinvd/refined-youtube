@@ -7,19 +7,15 @@ const HIDE_SHORTS_CSS = `
   }
 `;
 
-export function createHideShortsFeature({
-  onShortsHidden,
-}: {
-  onShortsHidden(): void;
-}): {
+export function createHideShortsFeature({ onShortsHidden }: { onShortsHidden(): void }): {
   setEnabled(enabled: boolean): void;
 } {
-  const style = document.createElement('style');
+  const style = document.createElement("style");
   style.textContent = HIDE_SHORTS_CSS;
   document.documentElement.append(style);
 
   function setEnabled(enabled: boolean): void {
-    style.textContent = enabled ? HIDE_SHORTS_CSS : '';
+    style.textContent = enabled ? HIDE_SHORTS_CSS : "";
 
     if (enabled) {
       onShortsHidden();
