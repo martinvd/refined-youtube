@@ -9,9 +9,14 @@ const SEARCH_RESULT_SHELF_SELECTOR = "grid-shelf-view-model";
 const HIDDEN_SEARCH_RESULT_SHORTS_SHELF_CLASS = "refined-youtube-hidden-shorts-shelf";
 
 const HIDE_SHORTS_CSS = `
-  ${HOME_SHORTS_SELECTOR},
-  ${SEARCH_RESULT_SHELF_SELECTOR}.${HIDDEN_SEARCH_RESULT_SHORTS_SHELF_CLASS} {
+  ${HOME_SHORTS_SELECTOR} {
     display: none !important;
+  }
+
+  ${SEARCH_RESULT_SHELF_SELECTOR}.${HIDDEN_SEARCH_RESULT_SHORTS_SHELF_CLASS} {
+    visibility: hidden !important;
+    height: 0 !important;
+    overflow: hidden !important;
   }
 `;
 
