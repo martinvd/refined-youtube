@@ -6,7 +6,7 @@ import { DEFAULT_HIDE_SHORTS, createHideShortsFeature } from "./features/hide-sh
 
 const collapseHiddenElements = createCollapseHiddenElementsFeature();
 const hideShortsFeature = createHideShortsFeature({
-  onShortsHidden: () => collapseHiddenElements.enqueue(document),
+  onShortsVisibilityChanged: () => collapseHiddenElements.enqueue(document),
 });
 
 function getStoredBoolean(value: unknown, fallback: boolean): boolean {
