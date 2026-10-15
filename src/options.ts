@@ -1,17 +1,31 @@
-const hideShortsCheckbox = document.getElementById("hide-shorts");
+const defaults: Record<string, boolean> = {
+  hideShorts: true,
+  disableHoverPreviews: true,
+};
 
-if (!(hideShortsCheckbox instanceof HTMLInputElement)) {
-  throw new Error("Expected #hide-shorts to be an HTMLInputElement");
-}
+const checkboxes = Object.keys(defaults).map((key) => {
+  const checkbox = document.querySelector(`input[name="${key}"]`);
 
-void chrome.storage.sync.get({ hideShorts: true }).then((stored) => {
-  hideShortsCheckbox.checked = typeof stored.hideShorts === "boolean" ? stored.hideShorts : true;
+  if (!(checkbox instanceof HTMLInputElement)) {
+    throw new Error(`Expected input[name="${key}"] to be an HTMLInputElement`);
+  }
+
+  return checkbox;
+});
+
+void chrome.storage.sync.get(defaults).then((stored) => {
+  for (const checkbox of checkboxes) {
+    const value = stored[checkbox.name];
+    checkbox.checked = typeof value === "boolean" ? value : defaults[checkbox.name]!;
+  }
 
   requestAnimationFrame(() => {
     document.body.dataset.ready = "";
   });
 });
 
-hideShortsCheckbox.addEventListener("change", () => {
-  void chrome.storage.sync.set({ hideShorts: hideShortsCheckbox.checked });
-});
+for (const checkbox of checkboxes) {
+  checkbox.addEventListener("change", () => {
+    void chrome.storage.sync.set({ [checkbox.name]: checkbox.checked });
+  });
+}
