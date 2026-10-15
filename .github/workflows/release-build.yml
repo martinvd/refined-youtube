@@ -26,13 +26,17 @@ jobs:
       - name: Build
         run: bun run build
 
-      - name: Package release
-        run: bun run release "${{ github.event.release.tag_name }}"
+      - name: Package Chrome extension
+        run: bun run package:chrome
 
-      - name: Upload release asset
+      - name: Package Firefox add-on
+        run: bun run package:firefox
+
+      - name: Upload release assets
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh release upload "${{ github.event.release.tag_name }}" \
-            "refined-youtube-${{ github.event.release.tag_name }}.zip" \
+            dist/*.zip \
+            dist/*.xpi \
             --clobber

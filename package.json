@@ -8,7 +8,8 @@
   "scripts": {
     "dev": "bun run --watch scripts/build.ts",
     "build": "tsc && bun run scripts/build.ts",
-    "release": "bun run scripts/release.ts",
+    "package:chrome": "bun run scripts/package-chrome.ts",
+    "package:firefox": "web-ext lint && web-ext build",
     "lint": "oxlint",
     "fmt": "oxfmt",
     "typecheck": "tsc --noEmit"
@@ -18,6 +19,7 @@
     "@types/chrome": "^0.1.40",
     "oxfmt": "^0.47.0",
     "oxlint": "^1.62.0",
-    "typescript": "~6.0.2"
+    "typescript": "~6.0.2",
+    "web-ext": "^10.7.0"
   }
 }

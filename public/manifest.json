@@ -9,9 +9,6 @@
     "default_title": "Refined YouTube"
   },
   "host_permissions": ["*://*.youtube.com/*"],
-  "background": {
-    "service_worker": "background.js"
-  },
   "content_scripts": [
     {
       "matches": ["*://*.youtube.com/*"],

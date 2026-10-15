@@ -7,11 +7,13 @@ Features:
 - [x] Option to hide YouTube Shorts
 - [x] Option to collapse hidden elements
 
-Tested on Chrome.
+Tested on Chrome and Firefox.
 
 ## Install
 
 Download [latest release](https://github.com/martinvd/refined-youtube/releases/latest), or build from source.
+
+The `.zip` is for Chrome. The `.xpi` is an unsigned build for Firefox Developer Edition or Nightly.
 
 ## Development
 
@@ -20,4 +22,10 @@ bun install
 bun dev # or bun run build
 ```
 
-Load the unpacked extension from the `dist` folder.
+`bun run build` writes `dist/chrome` and `dist/firefox`.
+
+Load `dist/chrome` as an unpacked extension in Chrome.
+
+In Firefox, open `about:debugging`, choose This Firefox, choose Load Temporary Add-on, and select `dist/firefox/manifest.json`.
+
+After a build, `bun run package:chrome` writes the Chrome `.zip` to `dist`. `bun run package:firefox` lints the Firefox build and writes the `.xpi` to `dist`.
