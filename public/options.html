@@ -5,31 +5,151 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Refined YouTube</title>
     <style>
+      :root {
+        color-scheme: light dark;
+        --bg: #fff;
+        --text: #0f0f0f;
+        --muted: #6b6b6b;
+        --track: #d9d9d9;
+        --track-on: #0f0f0f;
+        --knob: #fff;
+        --focus: #3ea6ff;
+        --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #212121;
+          --text: #f1f1f1;
+          --muted: #aaa;
+          --track: #3f3f3f;
+          --track-on: #f1f1f1;
+          --knob: #fff;
+        }
+
+        input:checked {
+          --knob: #212121;
+        }
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
       body {
-        margin: 12px 16px;
-        min-width: 180px;
+        margin: 0;
+        padding: 6px;
+        width: 280px;
+        background: var(--bg);
+        color: var(--text);
         font:
-          14px/1.4 system-ui,
+          13px/1.35 system-ui,
           sans-serif;
+        -webkit-font-smoothing: antialiased;
       }
 
       label {
-        display: block;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 10px;
+        border-radius: 8px;
+        cursor: pointer;
+        user-select: none;
       }
 
-      label + label {
-        margin-top: 8px;
+      .text {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .title {
+        display: block;
+        font-weight: 500;
+      }
+
+      .hint {
+        display: block;
+        margin-top: 1px;
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      input {
+        appearance: none;
+        flex: none;
+        position: relative;
+        width: 32px;
+        height: 18px;
+        margin: 0;
+        border-radius: 999px;
+        background: var(--track);
+        cursor: pointer;
+      }
+
+      input::after {
+        content: "";
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: var(--knob);
+        box-shadow: 0 1px 2px rgb(0 0 0 / 0.2);
+      }
+
+      input:checked {
+        background: var(--track-on);
+      }
+
+      input:checked::after {
+        transform: translateX(14px);
+      }
+
+      input:focus-visible {
+        outline: 2px solid var(--focus);
+        outline-offset: 2px;
+      }
+
+      /* Only animate once stored values are applied, so the popup doesn't flick on open */
+      [data-ready] input {
+        transition: background-color 160ms ease;
+      }
+
+      [data-ready] input::after {
+        transition:
+          transform 160ms var(--ease-out),
+          background-color 160ms ease;
+      }
+
+      @media (hover: hover) and (pointer: fine) {
+        label:hover {
+          background: color-mix(in srgb, var(--text) 5%, transparent);
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        [data-ready] input::after {
+          transition: background-color 160ms ease;
+        }
       }
     </style>
   </head>
   <body>
     <label>
-      <input type="checkbox" id="hide-shorts" />
-      Hide shorts
+      <span class="text">
+        <span class="title">Hide Shorts</span>
+        <span class="hint">On home and in search results</span>
+      </span>
+      <input type="checkbox" role="switch" id="hide-shorts" />
     </label>
     <label>
-      <input type="checkbox" id="collapse-hidden-elements" />
-      Collapse hidden elements
+      <span class="text">
+        <span class="title">Collapse hidden elements</span>
+        <span class="hint">Close the gaps left behind</span>
+      </span>
+      <input type="checkbox" role="switch" id="collapse-hidden-elements" />
     </label>
     <script src="options.js" defer></script>
   </body>

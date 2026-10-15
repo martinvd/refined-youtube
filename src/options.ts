@@ -16,6 +16,10 @@ void chrome.storage.sync.get({ hideShorts: true, collapseHiddenElements: true })
 
   hideShortsCheckbox.checked = hideShorts;
   collapseHiddenElementsCheckbox.checked = collapseHiddenElements;
+
+  requestAnimationFrame(() => {
+    document.body.dataset.ready = "";
+  });
 });
 
 hideShortsCheckbox.addEventListener("change", () => {
