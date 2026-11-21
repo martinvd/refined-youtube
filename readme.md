@@ -5,6 +5,7 @@
 Features:
 
 - [x] Option to hide YouTube Shorts
+- [x] Option to hide YouTube Playables
 - [x] Option to stop videos playing when hovering thumbnails
 
 Tested on Chrome and Firefox.

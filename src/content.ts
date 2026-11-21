@@ -2,10 +2,12 @@ import {
   DEFAULT_DISABLE_HOVER_PREVIEWS,
   createDisableHoverPreviewsFeature,
 } from "./features/disable-hover-previews.ts";
+import { DEFAULT_HIDE_PLAYABLES, createHidePlayablesFeature } from "./features/hide-playables.ts";
 import { DEFAULT_HIDE_SHORTS, createHideShortsFeature } from "./features/hide-shorts.ts";
 
 const features = {
   hideShorts: { feature: createHideShortsFeature(), fallback: DEFAULT_HIDE_SHORTS },
+  hidePlayables: { feature: createHidePlayablesFeature(), fallback: DEFAULT_HIDE_PLAYABLES },
   disableHoverPreviews: {
     feature: createDisableHoverPreviewsFeature(),
     fallback: DEFAULT_DISABLE_HOVER_PREVIEWS,

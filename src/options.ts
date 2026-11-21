@@ -1,5 +1,6 @@
 const defaults: Record<string, boolean> = {
   hideShorts: true,
+  hidePlayables: true,
   disableHoverPreviews: true,
 };
 
